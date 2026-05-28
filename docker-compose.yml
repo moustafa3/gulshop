@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gulshop-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gulshop
+      POSTGRES_USER: gulshop
+      POSTGRES_PASSWORD: gulshop
+    ports:
+      - "5432:5432"
+    volumes:
+      - gulshop-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  gulshop-postgres-data:
