@@ -103,10 +103,8 @@ gulshop/
 ├── frontend/
 ├── docs/
 └── docker/
-
-backend : application Java Spring Boot
-frontend : application Angular
-docs : documentation projet
-docker : configuration Docker complémentaire
-
-```bash
+```
+- `backend` : application Java Spring Boot
+- `frontend` : application Angular
+- `docs` : documentation projet
+- `docker` : configuration Docker complémentaire
