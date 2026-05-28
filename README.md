@@ -104,7 +104,21 @@ gulshop/
 ├── docs/
 └── docker/
 ```
+
 - `backend` : application Java Spring Boot
 - `frontend` : application Angular
 - `docs` : documentation projet
 - `docker` : configuration Docker complémentaire
+
+## Lancer PostgreSQL en local
+
+Prérequis :
+
+- Docker
+- Docker Compose
+
+Commande :
+
+```bash
+docker compose up -d
+```
