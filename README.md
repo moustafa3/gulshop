@@ -94,3 +94,19 @@ Modules principaux :
 ## Statut
 
 Projet en cours de construction.
+
+## Structure du repository
+
+```text
+gulshop/
+├── backend/
+├── frontend/
+├── docs/
+└── docker/
+
+backend : application Java Spring Boot
+frontend : application Angular
+docs : documentation projet
+docker : configuration Docker complémentaire
+
+```bash
