@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.gulshop.backend.auth.dto.LoginRequest;
+import com.gulshop.backend.security.JwtService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,6 +20,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.email())) {
@@ -40,11 +42,13 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
 
+        String token = jwtService.generateToken(savedUser);
+
         return new AuthResponse(
             savedUser.getId(),
             savedUser.getEmail(),
             savedUser.getRole().name(),
-            null
+            token
         );
     }
 
@@ -60,11 +64,13 @@ public class AuthService {
             throw new IllegalArgumentException("Ce compte est désactivé");
         }
 
+        String token = jwtService.generateToken(user);
+
         return new AuthResponse(
             user.getId(),
             user.getEmail(),
             user.getRole().name(),
-            null
+            token
         );
     }
 }
