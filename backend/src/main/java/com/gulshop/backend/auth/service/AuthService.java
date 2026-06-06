@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.gulshop.backend.auth.dto.LoginRequest;
 import com.gulshop.backend.security.JwtService;
+import com.gulshop.backend.auth.dto.CurrentUserResponse;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -73,4 +74,17 @@ public class AuthService {
             token
         );
     }
+    public CurrentUserResponse getCurrentUser(String email) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new IllegalArgumentException("Utilisateur introuvable"));
+
+        return new CurrentUserResponse(
+            user.getId(),
+            user.getEmail(),
+            user.getFirstName(),
+            user.getLastName(),
+            user.getRole().name()
+        );
+    }
+
 }

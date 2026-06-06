@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.gulshop.backend.auth.dto.LoginRequest;
+import com.gulshop.backend.auth.dto.CurrentUserResponse;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,6 +28,9 @@ public class AuthController {
     public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
     }
-
+    @GetMapping("/me")
+    public CurrentUserResponse me(Authentication authentication) {
+        return authService.getCurrentUser(authentication.getName());
+    }
 
 }
