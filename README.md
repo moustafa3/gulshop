@@ -122,3 +122,49 @@ Commande :
 ```bash
 docker compose up -d
 ```
+
+## API catalogue
+
+### Lister les produits
+
+```bash
+GET /api/products?page=0&size=10
+```
+
+### Rechercher un produit
+
+```bash
+GET /api/products?search=casque&page=0&size=10
+```
+
+### Filtrer par catégorie
+
+```bash
+GET /api/products?category=electronique&page=0&size=10
+```
+
+### Trier les produits
+
+Prix croissant :
+
+```bash
+GET /api/products?page=0&size=10&sort=price,asc
+```
+
+Prix décroissant :
+
+```bash
+GET /api/products?page=0&size=10&sort=price,desc
+```
+
+Nom alphabétique :
+
+```bash
+GET /api/products?page=0&size=10&sort=name,asc
+```
+
+### Détail produit
+
+```bash
+GET /api/products/casque-bluetooth
+```
