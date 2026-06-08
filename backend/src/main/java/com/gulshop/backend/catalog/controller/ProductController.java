@@ -21,9 +21,10 @@ public class ProductController {
     @GetMapping
     public Page<ProductResponse> getProducts(
         @RequestParam(required = false) String search,
+        @RequestParam(required = false) String category,
         Pageable pageable
     ) {
-        return catalogService.getProducts(search, pageable);
+        return catalogService.getProducts(search, category, pageable);
     }
 
     @GetMapping("/{slug}")
