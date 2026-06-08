@@ -26,13 +26,15 @@ public class CatalogService {
             .map(categoryMapper::toResponse);
     }
 
-    public Page<ProductResponse> getProducts(String search, Pageable pageable) {
+    public Page<ProductResponse> getProducts(String search, String category, Pageable pageable) {
         Page<Product> products;
 
-        if (search == null || search.isBlank()) {
-            products = productRepository.findAll(pageable);
-        } else {
+        if (search != null && !search.isBlank()) {
             products = productRepository.findByNameContainingIgnoreCase(search.trim(), pageable);
+        } else if (category != null && !category.isBlank()) {
+            products = productRepository.findByCategorySlug(category.trim(), pageable);
+        } else {
+            products = productRepository.findAll(pageable);
         }
 
         return products.map(productMapper::toResponse);
