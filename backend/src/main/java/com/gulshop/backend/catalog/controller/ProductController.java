@@ -3,6 +3,7 @@ package com.gulshop.backend.catalog.controller;
 import com.gulshop.backend.catalog.dto.ProductResponse;
 import com.gulshop.backend.catalog.service.CatalogService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class ProductController {
     public Page<ProductResponse> getProducts(
         @RequestParam(required = false) String search,
         @RequestParam(required = false) String category,
-        Pageable pageable
+        @ParameterObject Pageable pageable
     ) {
         return catalogService.getProducts(search, category, pageable);
     }
