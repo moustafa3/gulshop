@@ -168,3 +168,16 @@ GET /api/products?page=0&size=10&sort=name,asc
 ```bash
 GET /api/products/casque-bluetooth
 ```
+## Documentation API
+
+Swagger UI :
+
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
+OpenAPI JSON :
+
+```bash
+http://localhost:8080/v3/api-docs
+```
