@@ -201,3 +201,34 @@ Arrêter les services :
 ```bash
 docker compose down
 ```
+## Lancer toute l'application avec Docker Compose
+
+Démarrer PostgreSQL + backend + frontend :
+
+```bash
+docker compose up --build
+```
+
+Frontend :
+
+```bash
+http://localhost:4200
+```
+
+Backend health :
+
+```bash
+http://localhost:8080/actuator/health
+```
+
+Swagger :
+
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
+Arrêter les services :
+
+```bash
+docker compose down
+```
