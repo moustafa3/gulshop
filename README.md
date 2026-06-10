@@ -181,3 +181,23 @@ OpenAPI JSON :
 ```bash
 http://localhost:8080/v3/api-docs
 ```
+
+## Lancer le backend avec Docker Compose
+
+Démarrer PostgreSQL + backend :
+
+```bash
+docker compose up --build
+```
+
+Tester le backend :
+
+```bash
+http://localhost:8080/actuator/health
+```
+
+Arrêter les services :
+
+```bash
+docker compose down
+```
