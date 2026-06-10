@@ -12,5 +12,21 @@ services:
     volumes:
       - gulshop-postgres-data:/var/lib/postgresql/data
 
+  backend:
+    build:
+      context: ./backend
+    container_name: gulshop-backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gulshop
+      SPRING_DATASOURCE_USERNAME: gulshop
+      SPRING_DATASOURCE_PASSWORD: gulshop
+      JWT_SECRET: change-me-change-me-change-me-change-me-change-me-change-me
+      JWT_EXPIRATION_MINUTES: 60
+    ports:
+      - "8080:8080"
+
 volumes:
   gulshop-postgres-data:
