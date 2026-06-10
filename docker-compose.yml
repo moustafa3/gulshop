@@ -27,6 +27,15 @@ services:
       JWT_EXPIRATION_MINUTES: 60
     ports:
       - "8080:8080"
+  frontend:
+    build:
+      context: ./frontend
+    container_name: gulshop-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
 
 volumes:
   gulshop-postgres-data:
