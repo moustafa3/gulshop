@@ -232,3 +232,28 @@ Arrêter les services :
 ```bash
 docker compose down
 ```
+## Architecture frontend Angular
+
+```text
+frontend/src/app/
+├── core/
+│   ├── services/
+│   ├── interceptors/
+│   └── guards/
+├── shared/
+│   ├── components/
+│   ├── models/
+│   └── utils/
+├── features/
+│   ├── auth/
+│   ├── catalog/
+│   ├── cart/
+│   ├── order/
+│   └── admin/
+└── layouts/
+```
+
+`core` : services globaux, guards, interceptors  
+`shared` : composants et modèles réutilisables  
+`features` : modules fonctionnels métier  
+`layouts` : structures de pages
