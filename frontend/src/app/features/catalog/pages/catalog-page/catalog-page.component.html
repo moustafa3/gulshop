@@ -4,6 +4,20 @@
     <p>Découvrez les produits disponibles sur GülShop.</p>
   </header>
 
+  <form class="catalog-page__search" (ngSubmit)="searchProducts()">
+    <input
+      type="search"
+      name="search"
+      [(ngModel)]="searchTerm"
+      placeholder="Rechercher un produit..."
+    />
+
+    <button type="submit">Rechercher</button>
+    <button type="button" (click)="clearSearch()" *ngIf="searchTerm">
+      Réinitialiser
+    </button>
+  </form>
+
   <p *ngIf="loading">Chargement des produits...</p>
 
   <p *ngIf="errorMessage" class="catalog-page__error">
@@ -11,7 +25,7 @@
   </p>
 
   <div *ngIf="!loading && !errorMessage && products.length === 0">
-    Aucun produit disponible pour le moment.
+    Aucun produit trouvé.
   </div>
 
   <div class="catalog-page__grid" *ngIf="!loading && products.length > 0">
