@@ -14,16 +14,19 @@
     }
   }
 
-  &__search {
+  &__filters {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
     margin-bottom: 2rem;
 
-    input {
-      min-width: 280px;
+    input,
+    select {
+      min-width: 240px;
       padding: 0.75rem;
       border: 1px solid #ddd;
       border-radius: 8px;
+      background: #fff;
     }
 
     button {
@@ -60,6 +63,12 @@
 
   p {
     color: #555;
+  }
+
+  &__meta {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: #666;
   }
 
   &__footer {
