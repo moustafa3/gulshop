@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { CatalogService } from '../../services/catalog.service';
 import { Product } from '../../models/product.model';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-catalog-page',
@@ -14,13 +15,18 @@ import { Product } from '../../models/product.model';
 })
 export class CatalogPageComponent implements OnInit {
   products: Product[] = [];
+  categories: Category[] = [];
+
   searchTerm = '';
+  selectedCategory = '';
+
   loading = false;
   errorMessage = '';
 
   constructor(private readonly catalogService: CatalogService) {}
 
   ngOnInit(): void {
+    this.loadCategories();
     this.loadProducts();
   }
 
@@ -28,9 +34,25 @@ export class CatalogPageComponent implements OnInit {
     this.loadProducts();
   }
 
-  clearSearch(): void {
-    this.searchTerm = '';
+  filterByCategory(): void {
     this.loadProducts();
+  }
+
+  clearFilters(): void {
+    this.searchTerm = '';
+    this.selectedCategory = '';
+    this.loadProducts();
+  }
+
+  private loadCategories(): void {
+    this.catalogService.getCategories(0, 20).subscribe({
+      next: (response) => {
+        this.categories = response.content;
+      },
+      error: () => {
+        this.errorMessage = 'Impossible de charger les catégories.';
+      },
+    });
   }
 
   private loadProducts(): void {
@@ -42,6 +64,7 @@ export class CatalogPageComponent implements OnInit {
         page: 0,
         size: 10,
         search: this.searchTerm.trim() || undefined,
+        category: this.selectedCategory || undefined,
       })
       .subscribe({
         next: (response) => {

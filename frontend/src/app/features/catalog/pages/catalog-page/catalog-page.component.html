@@ -4,7 +4,7 @@
     <p>Découvrez les produits disponibles sur GülShop.</p>
   </header>
 
-  <form class="catalog-page__search" (ngSubmit)="searchProducts()">
+  <form class="catalog-page__filters" (ngSubmit)="searchProducts()">
     <input
       type="search"
       name="search"
@@ -12,8 +12,24 @@
       placeholder="Rechercher un produit..."
     />
 
+    <select
+      name="category"
+      [(ngModel)]="selectedCategory"
+      (change)="filterByCategory()"
+    >
+      <option value="">Toutes les catégories</option>
+      <option *ngFor="let category of categories" [value]="category.slug">
+        {{ category.name }}
+      </option>
+    </select>
+
     <button type="submit">Rechercher</button>
-    <button type="button" (click)="clearSearch()" *ngIf="searchTerm">
+
+    <button
+      type="button"
+      (click)="clearFilters()"
+      *ngIf="searchTerm || selectedCategory"
+    >
       Réinitialiser
     </button>
   </form>
@@ -32,6 +48,10 @@
     <article class="product-card" *ngFor="let product of products">
       <h2>{{ product.name }}</h2>
       <p>{{ product.description }}</p>
+
+      <div class="product-card__meta">
+        <span>{{ product.category.name }}</span>
+      </div>
 
       <div class="product-card__footer">
         <strong>{{ product.price }} €</strong>
