@@ -1,0 +1,29 @@
+<section class="catalog-page">
+  <header class="catalog-page__header">
+    <h1>Catalogue</h1>
+    <p>Découvrez les produits disponibles sur GülShop.</p>
+  </header>
+
+  <p *ngIf="loading">Chargement des produits...</p>
+
+  <p *ngIf="errorMessage" class="catalog-page__error">
+    {{ errorMessage }}
+  </p>
+
+  <div *ngIf="!loading && !errorMessage && products.length === 0">
+    Aucun produit disponible pour le moment.
+  </div>
+
+  <div class="catalog-page__grid" *ngIf="!loading && products.length > 0">
+    <article class="product-card" *ngFor="let product of products">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+
+      <div class="product-card__footer">
+        <strong>{{ product.price }} €</strong>
+        <span *ngIf="product.available">Disponible</span>
+        <span *ngIf="!product.available">Indisponible</span>
+      </div>
+    </article>
+  </div>
+</section>

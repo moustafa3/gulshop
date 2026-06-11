@@ -1,0 +1,50 @@
+.catalog-page {
+  padding: 2rem;
+
+  &__header {
+    margin-bottom: 2rem;
+
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+
+    p {
+      color: #555;
+    }
+  }
+
+  &__error {
+    color: #b00020;
+    font-weight: 600;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+}
+
+.product-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  p {
+    color: #555;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}
